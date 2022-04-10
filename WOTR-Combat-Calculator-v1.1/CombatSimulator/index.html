@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patrick Combat Simulator!</title>
+    <script defer src = "script.js"></script>
+    <link rel="stylesheet" href="styles.css"></head>
+<body>
+    <div class="super-super-div1">
+        <div class="super-div1">
+            <div class="selector">
+                <text>SHADOW:</text><br><br>
+
+                <button class = "button" onclick=change(0,"regular",-1)>-</button>
+                <text id = "sr">Regulars</text>
+                <button class = "button" onclick=change(0,"regular",1)>+</button>
+                <br>
+                <br>
+                <button class = "button" onclick=change(0,"elite",-1)>-</button>
+                <text id = "se">Elites</text>
+                <button class = "button" onclick=change(0,"elite",1)>+</button>
+                <br><br>
+
+                <button class = "button" onclick=change(0,"leader",-1)>-</button>
+                <text id = "sl">Leaders</text>
+                <button class = "button" onclick=change(0,"leader",1)>+</button>
+                <br>    <br>
+                <text id = "ssht">Stronghold: </text>
+                <button id = "ssh" class = "button" onclick="shadow.stronghold = !shadow.stronghold;
+                document.getElementById('ssh').innerText = shadow.stronghold + '';">TRUE</button>
+
+                <text id = "sct">City: </text>
+                <button id = "sc" class = "button" onclick="shadow.city = !shadow.city;
+                document.getElementById('sc').innerText = shadow.city + '';">TRUE</button>
+                <br><br>
+
+                <text>FREE:</text><br><br>
+
+                <button class = "button" onclick=change(1,"regular",-1)>-</button>
+                <text id = "fr">Regulars</text>
+                <button class = "button" onclick=change(1,"regular",1)>+</button>
+                <br>    <br>
+
+                <button class = "button" onclick=change(1,"elite",-1)>-</button>
+                <text id = "fe">Elites</text>
+                <button class = "button" onclick=change(1,"elite",1)>+</button>
+                <br>
+                <br>
+                <button class = "button" onclick=change(1,"leader",-1)>-</button>
+                <text id = "fl">Leaders</text>
+                <button class = "button" onclick=change(1,"leader",1)>+</button>
+                <br><br>
+                <text id = "fsht">Stronghold: </text>
+                <button id = "fsh" class = "button" onclick="free.stronghold = !free.stronghold;
+                document.getElementById('fsh').innerText = free.stronghold + '';">TRUE</button>
+
+                <text id = "fct">City: </text>
+                <button id = "fc" class = "button" onclick="free.city = !free.city;
+                document.getElementById('fc').innerText = free.city + '';">TRUE</button>
+            </div>
+
+            <br><br>
+
+            <br><br>
+
+            <text id = "ap">Auto-Press: </text>
+            <button id = "press" class = "button" onclick="press = !press;
+            document.getElementById('press').innerText = press + '';">TRUE</button>
+            <br><br>
+            <input type="range" min="100" max="500" value="100" class="slider" id="myRange">
+            <text id = "steps">Steps: 10000</text>
+
+        </div>
+
+        <div class="super-div2">
+            <text id = "swr" style="font-size: 25px">Shadow Player Wins: </text><br><br>
+            <text id = "fwr" style="font-size: 25px">Free Player Wins: </text><br><br>
+            <text id = "twr">Mutual Destruction: </text><br><br>
+
+            <text id = "details"></text><br><br>
+
+            <br><text id = "warnings"></text><br>
+
+            <button class = "button" onclick=getResult()>Get Results!</button>
+
+            <br>    <br>
+
+            <text>Shadow Card 1: </text>
+            <div class="dropdown">
+                <button onclick="document.getElementById('myDropdown').classList.toggle('show');"
+                        class='dropbtn' id='shadow1'>Round 1 Card</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <button class = "buttond" onclick="setCard(1,'shadow','no card')">No card</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','desperate battle')">Desperate Battle</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','deadly strife')">Deadly Strife</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','devilry of orthanc')">Devilry of Orthanc</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','special tile')">Special Tile</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','durins bane')">Durin's Bane</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','great host')">Great Host</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','we come to kill')">We Come to Kill!</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','mumakil')">Mumakil</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','they are terrible')">They are TERRIBLE!</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','foul stench')">Foul Stench</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','cruel as death')">Cruel as Death</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','onslaught1')">Onslaught(x1)</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','onslaught2')">Onslaught(x2)</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','onslaught3')">Onslaught(x3)</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','onslaught4')">Onslaught(x4)</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','relentless1')">Relentless Assault(x1)</button>
+                    <button class = "buttond" onclick="setCard(1,'shadow','relentless2')">Relentless Assault(x2)</button>
+                </div>
+            </div>
+
+            <text>Free Card 1: </text>
+            <div class="dropdown">
+                <button onclick="document.getElementById('myDropdown2').classList.toggle('show');"
+                        class='dropbtn' id='free1'>Round 1 Card</button>
+                <div id="myDropdown2" class="dropdown-content">
+                    <button class = "buttond" onclick="setCard(1,'free','no card')">No card</button>
+                    <button class = "buttond" onclick="setCard(1,'free','ents rage')">Ent's Rage</button>
+                    <button class = "buttond" onclick="setCard(1,'free','hourndark')">Hourn-dark</button>
+                    <button class = "buttond" onclick="setCard(1,'free','valour')">Valour</button>
+                    <button class = "buttond" onclick="setCard(1,'free','servant')">SotSF</button>
+                    <button class = "buttond" onclick="setCard(1,'free','daylight')">Daylight</button>
+                    <button class = "buttond" onclick="setCard(1,'free','special tile')">Special Tile</button>
+                    <button class = "buttond" onclick="setCard(1,'free','no quarter')">No Quarter</button>
+                    <button class = "buttond" onclick="setCard(1,'free','nameless wood')">Nameless Wood</button>
+                    <button class = "buttond" onclick="setCard(1,'free','charge')">Charge</button>
+                    <button class = "buttond" onclick="setCard(1,'free','confusion')">Confusion</button>
+                    <button class = "buttond" onclick="setCard(1,'free','mighty attack')">Mighty Attack</button>
+                    <button class = "buttond" onclick="setCard(1,'free','shieldwall')">Shield Wall</button>
+                    <button class = "buttond" onclick="setCard(1,'free','anduril')">Anduril</button>
+                    <button class = "buttond" onclick="setCard(1,'free','sudden strike')">Sudden Strike</button>
+                </div>
+            </div>
+
+
+            <br>    <br>
+
+
+            <text>Shadow Card 2: </text>
+            <div class="dropdown">
+                <button onclick="document.getElementById('myDropdown3').classList.toggle('show');"
+                        class='dropbtn' id='shadow2'>Round 2 Card</button>
+                <div id="myDropdown3" class="dropdown-content">
+                    <button class = "buttond" onclick="setCard(2,'shadow','no card')">No card</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','desperate battle')">Desperate Battle</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','deadly strife')">Deadly Strife</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','devilry of orthanc')">Devilry of Orthanc</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','special tile')">Special Tile</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','durins bane')">Durin's Bane</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','great host')">Great Host</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','we come to kill')">We Come to Kill!</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','mumakil')">Mumakil</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','they are terrible')">They are TERRIBLE!</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','foul stench')">Foul Stench</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','cruel as death')">Cruel as Death</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','onslaught1')">Onslaught(x1)</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','onslaught2')">Onslaught(x2)</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','onslaught3')">Onslaught(x3)</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','onslaught4')">Onslaught(x4)</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','relentless1')">Relentless Assault(x1)</button>
+                    <button class = "buttond" onclick="setCard(2,'shadow','relentless2')">Relentless Assault(x2)</button>
+                </div>
+            </div>
+
+            <text>Free Card 2: </text>
+            <div class="dropdown">
+                <button onclick="document.getElementById('myDropdown4').classList.toggle('show');"
+                        class='dropbtn' id='free2'>Round 2 Card</button>
+                <div id="myDropdown4" class="dropdown-content">
+                    <button class = "buttond" onclick="setCard(2,'free','no card')">No card</button>
+                    <button class = "buttond" onclick="setCard(2,'free','ents rage')">Ent's Rage</button>
+                    <button class = "buttond" onclick="setCard(2,'free','hourndark')">Hourn-dark</button>
+                    <button class = "buttond" onclick="setCard(2,'free','valour')">Valour</button>
+                    <button class = "buttond" onclick="setCard(2,'free','servant')">SotSF</button>
+                    <button class = "buttond" onclick="setCard(2,'free','daylight')">Daylight</button>
+                    <button class = "buttond" onclick="setCard(2,'free','special tile')">Special Tile</button>
+                    <button class = "buttond" onclick="setCard(2,'free','no quarter')">No Quarter</button>
+                    <button class = "buttond" onclick="setCard(2,'free','nameless wood')">Nameless Wood</button>
+                    <button class = "buttond" onclick="setCard(2,'free','charge')">Charge</button>
+                    <button class = "buttond" onclick="setCard(2,'free','confusion')">Confusion</button>
+                    <button class = "buttond" onclick="setCard(2,'free','mighty attack')">Mighty Attack</button>
+                    <button class = "buttond" onclick="setCard(2,'free','shieldwall')">Shield Wall</button>
+                    <button class = "buttond" onclick="setCard(2,'free','anduril')">Anduril</button>
+                    <button class = "buttond" onclick="setCard(2,'free','sudden strike')">Sudden Strike</button>
+                </div>
+            </div>
+
+            <br>    <br>
+
+
+
+            <text>Shadow Card 3: </text>
+            <div class="dropdown">
+                <button onclick="document.getElementById('myDropdown5').classList.toggle('show');"
+                        class='dropbtn' id='shadow3'>Round 3 Card</button>
+                <div id="myDropdown5" class="dropdown-content">
+                    <button class = "buttond" onclick="setCard(3,'shadow','no card')">No card</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','desperate battle')">Desperate Battle</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','deadly strife')">Deadly Strife</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','devilry of orthanc')">Devilry of Orthanc</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','special tile')">Special Tile</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','durins bane')">Durin's Bane</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','great host')">Great Host</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','we come to kill')">We Come to Kill!</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','mumakil')">Mumakil</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','they are terrible')">They are TERRIBLE!</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','foul stench')">Foul Stench</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','cruel as death')">Cruel as Death</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','onslaught1')">Onslaught(x1)</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','onslaught2')">Onslaught(x2)</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','onslaught3')">Onslaught(x3)</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','onslaught4')">Onslaught(x4)</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','relentless1')">Relentless Assault(x1)</button>
+                    <button class = "buttond" onclick="setCard(3,'shadow','relentless2')">Relentless Assault(x2)</button>
+                </div>
+            </div>
+
+            <text>Free Card 3: </text>
+            <div class="dropdown">
+                <button onclick="document.getElementById('myDropdown6').classList.toggle('show');"
+                        class='dropbtn' id='free3'>Round 3 Card</button>
+                <div id="myDropdown6" class="dropdown-content">
+                    <button class = "buttond" onclick="setCard(3,'free','no card')">No card</button>
+                    <button class = "buttond" onclick="setCard(3,'free','ents rage')">Ent's Rage</button>
+                    <button class = "buttond" onclick="setCard(3,'free','hourndark')">Hourn-dark</button>
+                    <button class = "buttond" onclick="setCard(3,'free','valour')">Valour</button>
+                    <button class = "buttond" onclick="setCard(3,'free','servant')">SotSF</button>
+                    <button class = "buttond" onclick="setCard(3,'free','daylight')">Daylight</button>
+                    <button class = "buttond" onclick="setCard(3,'free','special tile')">Special Tile</button>
+                    <button class = "buttond" onclick="setCard(3,'free','no quarter')">No Quarter</button>
+                    <button class = "buttond" onclick="setCard(3,'free','nameless wood')">Nameless Wood</button>
+                    <button class = "buttond" onclick="setCard(3,'free','charge')">Charge</button>
+                    <button class = "buttond" onclick="setCard(3,'free','confusion')">Confusion</button>
+                    <button class = "buttond" onclick="setCard(3,'free','mighty attack')">Mighty Attack</button>
+                    <button class = "buttond" onclick="setCard(3,'free','shieldwall')">Shield Wall</button>
+                    <button class = "buttond" onclick="setCard(3,'free','anduril')">Anduril</button>
+                    <button class = "buttond" onclick="setCard(3,'free','sudden strike')">Sudden Strike</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
